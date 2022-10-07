@@ -1,4 +1,4 @@
-# Mashine
+# Machine Learning 
 ![](https://www.python.org/static/img/python-logo@2x.png)
 
 ## Get Started
