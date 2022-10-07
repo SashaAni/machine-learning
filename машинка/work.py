@@ -2,6 +2,7 @@
 import pandas as pd 
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import confusion_matrix, accuracy_score
 
 df1 = pd.read_csv('train.csv')
 df2 = pd.read_csv('test.csv')
@@ -45,11 +46,14 @@ sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
-classifier = KNeighborsClassifier(n_neighbors=10)
+classifier = KNeighborsClassifier(n_neighbors=5)
 classifier.fit(X_train, y_train)
 
 y_pred = classifier.predict(X_test)
 ID = df2['CustomerID']
 result = pd.DataFrame({'CustomerID': ID, 'Spending Score': y_pred})
 result.to_csv('answer.csv', index=False)
+
+persent = accuracy_score(y_train, y_pred) * 100
+print('Точность предсказания равна ' + str(persent) + '%')
 
